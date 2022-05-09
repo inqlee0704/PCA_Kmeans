@@ -191,13 +191,14 @@ def main():
             best_score = score
             best_k = n
     print("-------------------------------------")
-    print(f"Run K-means with k={best_k}")
-    labels = run_Kmeans(pc_df, best_k)
+    k = int(input("Enter K: "))
+    print(f"Run K-means with k={k}")
+    labels = run_Kmeans(pc_df, k)
 
     # Save cluster info
     if SAVE == 'save':
         raw_df["Cluster"] = labels
-        kmeans_file = df_path.split("/")[-1][:-4] + f"_{first_var}_{last_var}_Kmeans_{best_k}.csv"
+        kmeans_file = df_path.split("/")[-1][:-4] + f"_{first_var}_{last_var}_Kmeans_{k}.csv"
         kmeans_path = os.path.join("".join(df_path.split("/")[:-1]), kmeans_file)
         PCA_file = df_path.split("/")[-1][:-4] + f"_{first_var}_{last_var}_PCA{PCA_n}_weights.csv"
         PCA_path = os.path.join("".join(df_path.split("/")[:-1]), PCA_file)
